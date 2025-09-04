@@ -1,0 +1,97 @@
+import std.core as core
+
+Vec2 :: struct { x: int; y: int }
+
+math {
+  PI :: 3.141592653589793
+
+  sq :: (x:int) -> int { return x * x }
+
+  dot :: (a: Vec2, b: Vec2) -> int {
+      return (a.x * b.x) + (a.y * b.y)
+  }
+
+  len2 :: (v: Vec2) -> int {
+      return sq(v.x) + sq(v.y)
+  }
+
+  clamp :: (x:int, lo:int, hi:int) -> int {
+      if (x < lo) { return lo }
+      if (x > hi) { return hi }
+      return x
+  }
+
+  fib :: (n:int) -> int {
+      if (n <= 1) { return n }
+      a: int = 0
+      b: int = 1
+      i: int = 2
+      while (i <= n) {
+          next: int = a + b
+          a = b
+          b = next
+          i = i + 1
+      }
+      return b
+  }
+
+  fact :: (n:int) -> int {
+      acc: int = 1
+      i: int = 2
+      for (i = 2; i <= n; i += 1) {
+          acc = acc * i
+      }
+      return acc
+  }
+}
+
+make_vec :: (x:int, y:int) -> Vec2 {
+    return Vec2.{x, y}
+}
+
+first_triangle_over :: (limit:int) -> int {
+    n: int = 1
+    acc: int = 0
+    while (true) {
+        acc = acc + n
+        if (acc > limit) { return acc }
+        n = n + 1
+    }
+    return 0
+}
+
+main :: () {
+    print("---BuiltIns---")
+    core::help_builtins()
+
+    print("== struct + len2 + dot ==")
+    a: Vec2 = Vec2.{3, 4}
+    b: Vec2 = make_vec(-2, 5)
+
+    print(math::len2(a));                     // 25
+    print(math::dot(a, b));                   // 14
+
+    print("== clamp / fib / fact ==");
+    print(math::clamp(42, 0, 10));            // 10
+    print(math::fib(10));                     // 55
+    print(math::fact(6));                     // 720
+
+    print("== for + if (sum of evens 1..10) ==");
+    sum: int = 0
+    i: int = 1
+    for (i = 1; i <= 10; i += 1) {
+        if ((i % 2) == 0) {
+            sum = sum + i
+        }
+    }
+    print(sum);                               // 30
+
+    print("== while + early return ==");
+    print(first_triangle_over(50));           // 55
+
+    print("== ternary expression ==");
+    print((5 < 3) ? 111 : 222);               // 222
+
+    print("done");
+}
+

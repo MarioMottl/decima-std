@@ -1,0 +1,23 @@
+// tuple-returning function
+div_mod :: (x: int, y: int) -> (q: int, r: int) {
+  q: int = x / y
+  r: int = x % y
+  return q, r
+}
+
+// basic tests using tuple indexing
+run_tuple_tests :: () -> void {
+  t := div_mod(17, 5)    // t is a tuple
+  print(len(t))          // expect 2
+  print(t[0])            // expect 3
+  print(t[1])            // expect 2
+
+  // if you have core::assert:
+  // core::assert(len(t) == 2, "tuple len")
+  // core::assert(t[0] == 3, "q")
+  // core::assert(t[1] == 2, "r")
+}
+
+main :: () -> void {
+  run_tuple_tests()
+}
