@@ -1,0 +1,10 @@
+split_at_whitespace :: (s: string) -> array {
+    parts := split(s, " ")
+    out := array()
+    i: int = 0
+    for (i = 0; i < len(parts); i = i + 1) {
+        t := trim(get(parts, i))
+        if (len(t) > 0) { push(out, t) }
+    }
+    return out
+}

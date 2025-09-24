@@ -1,4 +1,46 @@
-builtin_list_csv :: "print,len,now_ns,array,array_with,push,pop,get,set,read_file,split,parse_int,trim"
+builtin_list_csv :: "
+print,
+len,
+now_ns,
+===Array===
+array,
+array_with,
+push,
+pop,
+get,
+set,
+===FILE==
+read_file,
+===String===
+split,
+parse_int,
+trim,
+lines,
+ints,
+===HASHMAP===
+map,
+map_set,
+map_get,
+map_has,
+map_remove,
+map_keys,
+map_values,
+map_len,
+===HASHSET===
+set_new,
+set_add,
+set_has,
+set_remove,
+set_len,
+===Numeric Helpers===
+abs,
+min,
+max,
+sum,
+product,
+join,
+range,
+enumerate"
 
 help_builtins :: () {
     print("builtins:")
@@ -14,8 +56,3 @@ assert :: (cond: bool, msg: string) {
     print("assert failed:")
     print(msg)
 }
-
-println :: (s: string) {
-    print(s)
-}
-

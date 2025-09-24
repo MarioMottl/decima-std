@@ -1,0 +1,5 @@
+Vec2 :: struct { x:int; y:int }
+make_vec :: (x:int, y:int) -> Vec2 {
+    return Vec2.{x, y}
+}
+len2 :: (v:Vec2)->int { return sq(v.x) + sq(v.y) }
