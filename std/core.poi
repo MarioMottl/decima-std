@@ -1,53 +1,52 @@
-builtin_list_csv :: "
-print,
-len,
-now_ns,
-===Array===
-array,
-array_with,
-push,
-pop,
-get,
-set,
-===FILE==
-read_file,
-===String===
-split,
-parse_int,
-trim,
-lines,
-ints,
-===HASHMAP===
-map,
-map_set,
-map_get,
-map_has,
-map_remove,
-map_keys,
-map_values,
-map_len,
-===HASHSET===
-set_new,
-set_add,
-set_has,
-set_remove,
-set_len,
-===Numeric Helpers===
-abs,
-min,
-max,
-sum,
-product,
-join,
-range,
-enumerate"
+builtin_meta :: "
+print|General|(value)|Print a value
+len|General|(array|string|map|set)|Length of a collection or string
+now_ns|General|()|Current time in nanoseconds
+array|Array|()|Create empty array
+array_with|Array|(value, count)|Create array filled with value
+push|Array|(array, value)|Append value to array
+pop|Array|(array)|Remove and return last element
+get|Array/Map|(container, key_or_index)|Get value
+set|Array/Map|(container, key_or_index, value)|Assign value
+read_file|File|(path)|Read entire file contents
+split|String|(string, sep)|Split by separator
+parse_int|String|(string)|Parse integer from string
+trim|String|(string)|Trim leading/trailing whitespace
+lines|String|(string)|Split into lines
+ints|String|(string)|Extract integers appearing in text
+map|HashMap|()|Create a new map
+map_set|HashMap|(map, key, value)|Insert or replace key
+map_get|HashMap|(map, key)|Get value for key
+map_has|HashMap|(map, key)|Key exists?
+map_remove|HashMap|(map, key)|Remove key
+map_keys|HashMap|(map)|Array of keys
+map_values|HashMap|(map)|Array of values
+map_len|HashMap|(map)|Number of keys
+set_new|HashSet|()|Create a new set
+set_add|HashSet|(set, value)|Add value
+set_has|HashSet|(set, value)|Contains value?
+set_remove|HashSet|(set, value)|Remove value
+set_len|HashSet|(set)|Set size
+abs|Numeric|(n)|Absolute value
+min|Numeric|(a, b)|Smaller of two values
+max|Numeric|(a, b)|Larger of two values
+sum|Numeric|(array)|Sum of array elements
+product|Numeric|(array)|Product of array elements
+join|Array/String|(array, sep)|Join array into string
+range|Numeric|(start, end)|Create array from start to end
+enumerate|Array|(array)|Array of [index, value] pairs
+"
+
 
 help_builtins :: () {
-    print("builtins:")
-    parts := split(builtin_list_csv, ",")
-    i := 0
-    for (i = 0; i < len(parts); i = i + 1) {
-        print(get(parts, i))
+    print("Builtins:")
+    ls := lines(builtin_meta)
+    for (i: int = 0; i < len(ls); i = i + 1) {
+        line := ls[i]
+        parts := split(line, "|")
+        if (len(parts) == 4) {
+            print(join(parts, "\n\t-"))
+        }
     }
 }
 
