@@ -7,8 +7,8 @@ EXAMPLE_INPUT :: "3   4
 
 bubble_sort :: (arr: array) {
     n := len(arr)
-    for (i: int = 0; i < n; i = i + 1) {
-        for (j: int = 0; j < n - i - 1; j = j + 1) {
+    for (i: int = 0; i < n; i += 1) {
+        for (j: int = 0; j < n - i - 1; j += 1) {
             if (arr[j] > arr[j+1]) {
                 tmp := arr[j]
                 arr[j] = arr[j+1]
@@ -22,7 +22,7 @@ main :: () {
     ls := lines(EXAMPLE_INPUT)
     left := array()
     right := array()
-    for (i: int = 0; i < len(ls); i = i + 1) {
+    for (i: int = 0; i < len(ls); i += 1) {
         line := trim(ls[i])
         parts := split(line, "   ")
         if (len(parts) < 2) { continue }
@@ -36,7 +36,7 @@ main :: () {
 
     // Part1: sum of absolute differences.
     sum_diff: int = 0
-    for (j: int = 0; j < len(left); j = j + 1) {
+    for (j: int = 0; j < len(left); j += 1) {
         diff := left[j] - right[j]
         if (diff < 0) { diff = -diff }
         sum_diff = sum_diff + diff
@@ -47,10 +47,10 @@ main :: () {
 
     // Part2: similarity score.
     similarity: int = 0
-    for (k: int = 0; k < len(left); k = k + 1) {
+    for (k: int = 0; k < len(left); k += 1) {
         val := left[k] 
         count: int = 0
-        for (l: int = 0; l < len(right); l = l + 1) {
+        for (l: int = 0; l < len(right); l += 1) {
             if (right[l] == val) {
                 count = count + 1
             }
